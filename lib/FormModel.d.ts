@@ -1,5 +1,5 @@
 import { IVariables } from "./interface/IVariables";
-export default class RecordForm {
+export default class FormModel {
     _template: string;
     _variables: IVariables;
     isReadonly(state: any, view: string, isWhitelistedForEdit?: boolean): any;
