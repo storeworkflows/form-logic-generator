@@ -1,0 +1,26 @@
+{
+  "name": "@swf/form-logic-generator",
+  "version": "1.0.0",
+  "description": "Servicenow form logic generator for modern portals",
+  "main": "lib/index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "cross-fetch": "^3.0.6",
+    "microbundle": "^0.13.0",
+    "npm-dts": "^1.3.9",
+    "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "@servicenow/library-translate": "^19.1.0",
+    "common-js": "^0.3.8",
+    "lodash": "^4.17.21",
+    "sn-http-request": "^18.0.1"
+  }
+}

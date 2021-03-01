@@ -1,0 +1,6 @@
+export declare enum NotificationEnum {
+    ADD = "ADD_NOTIFICATIONS",
+    CLEAR = "CLEAR_NOTIFICATIONS",
+    CHANGED = "RECORD_NOTIFICATIONS_CHANGED",
+    REMOVE = "REMOVE_NOTIFICATION"
+}

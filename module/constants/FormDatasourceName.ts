@@ -1,0 +1,20 @@
+export const DATASOURCE_NAMES = {
+    header: 'formHeader',
+    tag: 'recordTags',
+    formDA: 'formActions',
+    fieldDA: 'declarativeUIActions',
+    attachmentACL: 'attachments',
+    uiAction: 'uiActions',
+    clientScriptEnv: 'environment',
+    formLayout: 'layout',
+    dataLookup: 'dataLookup',
+    currentUser: 'currentUser',
+    fieldValidator: 'validationScripts',
+    uiScript: 'uiScripts',
+    registeredModal: 'registeredModals',
+    activityStream: 'activityStream',
+    ribbon: 'ribbon',
+    shn: 'specialHandlingNote',
+    sessionMessage: 'session',
+    simpleFormLayout: 'simpleFormLayout'
+};
