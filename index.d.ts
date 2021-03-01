@@ -1,3 +1,27 @@
+declare module '@swf/form-logic-generator/FormModel' {
+  import { IVariables } from "@swf/form-logic-generator/interface/IVariables";
+  export default class FormModel {
+      _template: string;
+      _variables: IVariables;
+      isReadonly(state: any, view: string, isWhitelistedForEdit?: boolean): any;
+      getRecordValueProps(recordValues: any, fieldName: any): {
+          value: any;
+          displayValue: any;
+          valuesList: any;
+          display_value_list: any;
+      };
+      getUiDomain(data: any, referringTable: any, referringRecordId: any): {
+          tableDisplayValue: any;
+          fields: any;
+      };
+      updatingProperties(data: any, state: any, properties: any): {
+          formData: any;
+          configurationItems: any[];
+      };
+      load(variables: IVariables, id: any, setState: any): Promise<void>;
+  }
+
+}
 declare module '@swf/form-logic-generator/GlideClientScriptFactory' {
   import { GlideScopedScript } from '@swf/form-logic-generator/GlideScopedScript';
   /**
@@ -312,30 +336,6 @@ declare module '@swf/form-logic-generator/PlatformResource' {
       private static assignPlatformResources;
       private loadPlatformResources;
       load(id: any): Promise<void>;
-  }
-
-}
-declare module '@swf/form-logic-generator/RecordForm' {
-  import { IVariables } from "@swf/form-logic-generator/interface/IVariables";
-  export default class RecordForm {
-      _template: string;
-      _variables: IVariables;
-      isReadonly(state: any, view: string, isWhitelistedForEdit?: boolean): any;
-      getRecordValueProps(recordValues: any, fieldName: any): {
-          value: any;
-          displayValue: any;
-          valuesList: any;
-          display_value_list: any;
-      };
-      getUiDomain(data: any, referringTable: any, referringRecordId: any): {
-          tableDisplayValue: any;
-          fields: any;
-      };
-      updatingProperties(data: any, state: any, properties: any): {
-          formData: any;
-          configurationItems: any[];
-      };
-      load(variables: IVariables, id: any, setState: any): Promise<void>;
   }
 
 }
@@ -922,8 +922,7 @@ declare module '@swf/form-logic-generator/graphqlRequest/index' {
 
 }
 declare module '@swf/form-logic-generator/index' {
-  export { default as Resources } from "@swf/form-logic-generator/PlatformResource";
-  export { default as RecordForm } from "@swf/form-logic-generator/RecordForm";
+  export { default as FormModel } from "@swf/form-logic-generator/FormModel";
 
 }
 declare module '@swf/form-logic-generator/interface/IAddQuery' {
