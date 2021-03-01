@@ -1134,6 +1134,6 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
 
 }
 declare module '@swf/form-logic-generator' {
-  import main = require('@swf/form-logic-generator/lib/index');
+  import main = require('@swf/form-logic-generator/index');
   export = main;
 }
