@@ -922,7 +922,7 @@ declare module '@swf/form-logic-generator/graphqlRequest/index' {
 
 }
 declare module '@swf/form-logic-generator/index' {
-  export { default as FormModel } from "@swf/form-logic-generator/FormModel";
+  export function getFormModel(variables: any, id: object, updater: any): void;
 
 }
 declare module '@swf/form-logic-generator/interface/IAddQuery' {
