@@ -4,7 +4,6 @@ import GlideRequest from "./GlideRequest";
 import {GlideFormEnvironment} from "./GlideFormEnvironment";
 import GlobalStorage from "./Globals";
 
-const globals: any = new Map();
 
 export default class PlatformResource {
 
@@ -72,6 +71,8 @@ export default class PlatformResource {
                 glideEnvPromiseReject = reject;
             });
             let sendRequest = sendRequestFactory();
+
+            console.log(id);
 
             GlobalStorage.set(id, {
                 sendRequest,
