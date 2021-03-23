@@ -992,6 +992,8 @@ declare module '@swf/form-logic-generator/interface/IForm' {
       disableAttachments(): void;
       save(): void;
       submit(): void;
+      serialize(): any;
+      getEncodedRecord(): string;
   }
   export interface IgUser {
       userName: string;
@@ -1148,8 +1150,7 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
 
 }
 
-
 declare module '@swf/form-logic-generator' {
-  import {IForm} from "@swf/form-logic-generator/interface/IForm";
-  export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>
+    import {IForm} from "@swf/form-logic-generator/interface/IForm";
+    export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>
 }
