@@ -94,6 +94,7 @@ const createTransform = (getValueOrDefault: any) => (data: any, state: any, prop
     const { table } = state.properties;
     const { trueTable = table, view } = state.record || state.properties;
     const { sideBar, relatedItem } = FORM_ACTION_POSITION;
+    console.log(data, state, properties);
     const formActions = getValueOrDefault(FORM_ACTIONS_KEY, [])(data);
     const relatedItems = formActionsForPosition(formActions, relatedItem).map(
         (action: any) => ({ ...action, name: action.name || action.actionComponent })
