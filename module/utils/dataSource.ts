@@ -68,17 +68,11 @@ export const componentDataSources: any = {
     'now-record-common-uiactionbar': [uiAction],
     'now-record-form-blob': [
         clientScriptEnv,
-        attachmentACL,
         fieldDA,
         formDA,
         formLayout,
-        dataLookup,
         currentUser,
-        fieldValidator,
-        uiScript,
-        registeredModal,
         uiAction,
-        sessionMessage
     ],
     'now-activity-combo': [activityStream],
     'now-activity-stream-connected': [activityStream],
