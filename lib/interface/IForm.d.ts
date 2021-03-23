@@ -55,6 +55,8 @@ export interface IgForm {
     disableAttachments(): void;
     save(): void;
     submit(): void;
+    serialize(): any;
+    getEncodedRecord(): string;
 }
 export interface IgUser {
     userName: string;

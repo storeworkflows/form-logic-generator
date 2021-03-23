@@ -282,6 +282,13 @@ export interface IgForm {
      *  Saves the record.User will be taken away from the form, returning them to where they were previously.
      */
     submit(): void;
+
+    serialize(): any
+
+    /*
+    * Encode record to base64 string
+     */
+    getEncodedRecord(): string
 }
 
 export interface IgUser {
