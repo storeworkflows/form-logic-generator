@@ -148,11 +148,11 @@ export class GlideFormEnvironment {
             },
             sendRequest
         );
-        this._scope.setGlideAPIs(this.glideAjax, this.glideRecord);
-        this._scope.setModal(this.glideModalFactory, formModal);
-        this._scope.setUser(this.glideUser, data.currentUser.user);
+        this._scope.setGlideAPIs(this?.glideAjax, this?.glideRecord);
+        this._scope.setModal(this?.glideModalFactory, formModal);
+        this._scope.setUser(this?.glideUser, data?.currentUser?.user);
         this._scope.setITSMWorkbench();
-        this._scope.setUIScripts(this.uiScriptFactory, data.uiScripts.scripts);
+        this._scope.setUIScripts(this.uiScriptFactory, data.uiScripts?.scripts);
         this._scope.setNamespaces();
         const submitSubscriber = (record: any, redirect: string, operation: string) => {
             if (this._submitSubscriber) {
@@ -166,7 +166,7 @@ export class GlideFormEnvironment {
         };
 
         this._scope.setUIActions(
-            data.uiActions.formActions,
+            data?.uiActions?.formActions,
             submitSubscriber,
             sendRequest,
             {table, sysId}
