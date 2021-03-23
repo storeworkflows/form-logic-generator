@@ -73,7 +73,8 @@ export const componentDataSources: any = {
         formLayout,
         currentUser,
         uiAction,
-        dataLookup
+        dataLookup,
+        fieldValidator
     ],
     'now-activity-combo': [activityStream],
     'now-activity-stream-connected': [activityStream],
