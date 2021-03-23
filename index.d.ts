@@ -1,5 +1,6 @@
 declare module '@swf/form-logic-generator/FormModel' {
   import { IVariables } from "@swf/form-logic-generator/interface/IVariables";
+  import { IForm } from "@swf/form-logic-generator/interface/IForm";
   export default class FormModel {
       _template: string;
       _variables: IVariables;
@@ -18,7 +19,7 @@ declare module '@swf/form-logic-generator/FormModel' {
           formData: any;
           configurationItems: any[];
       };
-      load(variables: IVariables, id: any, setState: any): Promise<void>;
+      load(variables: IVariables, id: any, setState: any): Promise<IForm>;
   }
 
 }
@@ -922,7 +923,8 @@ declare module '@swf/form-logic-generator/graphqlRequest/index' {
 
 }
 declare module '@swf/form-logic-generator/index' {
-  export function getFormModel(variables: any, id: object, updater: any): void;
+  import { IForm } from "@swf/form-logic-generator/interface/IForm";
+  export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>;
 
 }
 declare module '@swf/form-logic-generator/interface/IAddQuery' {
@@ -1133,5 +1135,6 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
 
 }
 declare module '@swf/form-logic-generator' {
-    export function getFormModel(variables: any, id: object, updater: any): void;
+    import { IForm } from "@swf/form-logic-generator/interface/IForm";
+    export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>;
 }
