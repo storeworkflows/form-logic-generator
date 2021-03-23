@@ -154,13 +154,8 @@ export const getDataSourcesForComponents = (queryPrefix: any, components: any) =
 
 export const getDataSourcesForForm = () => {
     return getDataSourcesForComponents(QUERY_PREFIX, [
-        'now-record-common-header',
-        'now-record-common-sidebar',
         'now-record-common-uiactionbar',
         'now-record-form-blob',
-        'now-activity-combo',
-        'sn-component-ribbon-container',
-        'sn-component-shn-modal'
     ]);
 };
 
