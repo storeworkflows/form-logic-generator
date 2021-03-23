@@ -44,7 +44,7 @@ export const FORM_ACTIONS_KEY = "formActions";
 export const QUERY_FRAGMENT = `
 ${DECLARATIVE_ACTIONS_QUERY_KEY} {
 	${DECLARATIVE_ACTIONS_FORM_QUERY_KEY} {
-		${FORM_DECLARATIVE_ACTIONS_KEY} (table: $table, views: $views, sysId: $sysId, query: $query, source: "form", workspaceConfigId: $workspaceConfigId) {
+		${FORM_DECLARATIVE_ACTIONS_KEY} (table: $table, view: $view, sysId: $sysId, query: $query, source: "form", workspaceConfigId: $workspaceConfigId) {
 			${FORM_ACTIONS_KEY} {
 				position
                 actions {
