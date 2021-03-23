@@ -1,7 +1,7 @@
 import { IVariables } from "./interface/IVariables";
 import { IForm } from "./interface/IForm";
 export default class FormModel {
-    _template: string;
+    private _template;
     _variables: IVariables;
     isReadonly(state: any, view: string, isWhitelistedForEdit?: boolean): any;
     getRecordValueProps(recordValues: any, fieldName: any): {

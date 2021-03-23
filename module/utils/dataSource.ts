@@ -163,3 +163,54 @@ export const getDataSourcesForForm = () => {
         'sn-component-shn-modal'
     ]);
 };
+
+export const getVariables = function getVariables(variableParams: {}, dataSources: any[]) {
+    if (!_.isEmpty(variableParams)) return Object.keys(variableParams);
+
+    return dataSources.reduce(function (variables, ds) {
+        return _.union(variables, ds.variables);
+    }, []);
+};
+
+export const getTemplateVariables = function getTemplateVariables(dataSources: any[], templateVariableParams?: {}) {
+    if (!_.isEmpty(templateVariableParams)) return Object.keys(templateVariableParams);
+
+    return dataSources.reduce(function (variables: any, ds: { templateVariables: any; }) {
+        return _.union(variables, ds.templateVariables);
+    }, []);
+};
+
+export const isRequired = function isRequired(variable: string, variableParams: any) {
+    return _.get(variableParams, variable + '.mandatory', true);
+};
+
+export const defaultQueryTemplate = function defaultQueryTemplate(variables: any[], variableParams: any) {
+    var queryVariables = variables.map(function (variable) {
+        var required = isRequired(variable, variableParams);
+        return '$' + variable + ': String' + (required ? '!' : '');
+    }).join(', ');
+    return 'query(' + queryVariables + '){\n\t\t<<queries>>\n\t}';
+};
+
+export const getQuery = function getQuery(dataSources: any[], queryTemplate: string, variables: any, variableParams: any) {
+    var queryFragments = dataSources.map(function (ds) {
+        return ds.query;
+    }).join('\n');
+    var template = queryTemplate || defaultQueryTemplate(variables, variableParams);
+    return template.replace('<<queries>>', queryFragments);
+};
+
+export const getFormDataProvider = (data: { name?: string; dataSources: any; queryTemplate: any; variableParams?: any; templateVariableParams?: any; fetchActionNames?: any; }) => {
+    const {
+        dataSources,
+        queryTemplate,
+        variableParams,
+        templateVariableParams
+    } = data;
+
+    const variables = getVariables(variableParams, dataSources);
+    const templateVariables = getTemplateVariables(dataSources, templateVariableParams);
+    const query = getQuery(dataSources, queryTemplate, variables, variableParams);
+
+    return query;
+}
