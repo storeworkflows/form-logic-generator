@@ -178,6 +178,8 @@ const createTransform = (getValueOrDefault: any) => (data: any, state: any, prop
         getValueOrDefault(UI_ACTION_MESSAGES, [])(data)
     );
 
+    console.log({actionNodeData, uiActionNodes, formActions, encodedQuery, configurationItem, messages, isFormReadonly})
+
     return {
         formActions,
         uiActionNodes,

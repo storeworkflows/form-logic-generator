@@ -2,7 +2,7 @@ declare module '@swf/form-logic-generator/FormModel' {
   import { IVariables } from "@swf/form-logic-generator/interface/IVariables";
   import { IForm } from "@swf/form-logic-generator/interface/IForm";
   export default class FormModel {
-      _template: string;
+      private _template;
       _variables: IVariables;
       isReadonly(state: any, view: string, isWhitelistedForEdit?: boolean): any;
       getRecordValueProps(recordValues: any, fieldName: any): {
@@ -1077,6 +1077,19 @@ declare module '@swf/form-logic-generator/utils/dataSource' {
   export const componentDataSources: any;
   export const getDataSourcesForComponents: (queryPrefix: any, components: any) => any;
   export const getDataSourcesForForm: () => any;
+  export const getVariables: (variableParams: {}, dataSources: any[]) => any;
+  export const getTemplateVariables: (dataSources: any[], templateVariableParams?: {}) => any;
+  export const isRequired: (variable: string, variableParams: any) => any;
+  export const defaultQueryTemplate: (variables: any[], variableParams: any) => string;
+  export const getQuery: (dataSources: any[], queryTemplate: string, variables: any, variableParams: any) => string;
+  export const getFormDataProvider: (data: {
+      name?: string;
+      dataSources: any;
+      queryTemplate: any;
+      variableParams?: any;
+      templateVariableParams?: any;
+      fetchActionNames?: any;
+  }) => string;
 
 }
 declare module '@swf/form-logic-generator/utils/glideFormParser' {
@@ -1135,6 +1148,6 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
 
 }
 declare module '@swf/form-logic-generator' {
-    import { IForm } from "@swf/form-logic-generator/interface/IForm";
-    export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>;
+  import main = require('@swf/form-logic-generator/index.ts');
+  export = main;
 }
