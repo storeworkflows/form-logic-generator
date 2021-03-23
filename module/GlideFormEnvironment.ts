@@ -221,16 +221,16 @@ export class GlideFormEnvironment {
             {
                 tableName: trueTable,
                 sysId: sysId,
-                formFields: data.layout.formFields,
-                encodedRecord: data.layout.encodedRecord,
-                sections: data.layout.sections,
-                relatedLists: data.layout.relatedLists,
-                attachments: data.attachments.props || data.attachments,
+                formFields: data.layout?.formFields,
+                encodedRecord: data.layout?.encodedRecord,
+                sections: data.layout?.sections,
+                relatedLists: data.layout?.relatedLists,
+                attachments: data?.attachments?.props || data?.attachments,
                 viewName: view,
                 modal: formModal,
-                variablesLayout: data.layout.variablesLayout,
+                variablesLayout: data?.layout?.variablesLayout,
                 reloadForm,
-                uniqueValue: data.layout.sysId
+                uniqueValue: data?.layout?.sysId
             }
         );
 
