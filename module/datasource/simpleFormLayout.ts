@@ -106,8 +106,8 @@ const transformFormFieldValues = (
             ...fields,
             [key]: {
                 ...field,
-                sys_readonly: true,
-                readonly: true
+                // sys_readonly: true,
+                // readonly: true
             }
         }),
         {}
