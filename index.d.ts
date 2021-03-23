@@ -1147,7 +1147,9 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
   export default uiPolicyParser;
 
 }
+
+
 declare module '@swf/form-logic-generator' {
-  import main = require('@swf/form-logic-generator/index.ts');
-  export = main;
+  import {IForm} from "@swf/form-logic-generator/interface/IForm";
+  export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>
 }
