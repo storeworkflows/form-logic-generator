@@ -1,4 +1,5 @@
 import { IVariables } from "./interface/IVariables";
+import { IForm } from "./interface/IForm";
 export default class FormModel {
     _template: string;
     _variables: IVariables;
@@ -17,5 +18,5 @@ export default class FormModel {
         formData: any;
         configurationItems: any[];
     };
-    load(variables: IVariables, id: any, setState: any): Promise<void>;
+    load(variables: IVariables, id: any, setState: any): Promise<IForm>;
 }
