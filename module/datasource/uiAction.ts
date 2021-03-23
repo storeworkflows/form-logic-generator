@@ -156,12 +156,10 @@ const createTransform = (getValueOrDefault: any) => (data: any, state: any, prop
     const { record: { trueTable = table } = {} } = state;
 
     const actionNodeData = getValueOrDefault(UI_ACTION_NODES, [])(data);
-    const uiActionNodes = isFormReadonly
-        ? []
-        : transformActionNodes(actionNodeData);
+    const uiActionNodes = transformActionNodes(actionNodeData);
 
     const formActions =
-        !uiActionNodes || isFormReadonly ? [] : getActionsFromNodes(actionNodeData);
+        !uiActionNodes ? [] : getActionsFromNodes(actionNodeData);
 
     const encodedQuery = encodeURIComponent(
         `table=${trueTable}^ORtable=global^form_button_v2=true^ORform_menu_button_v2=true^active=true`
