@@ -72,8 +72,6 @@ export default class PlatformResource {
             });
             let sendRequest = sendRequestFactory();
 
-            console.log(id);
-
             GlobalStorage.set(id, {
                 sendRequest,
                 glideEnvironment: null,

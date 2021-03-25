@@ -143,8 +143,6 @@ const createTransform = (getValueOrDefault: any) => (
         getValueOrDefault(SECTION_LAYOUT, [])(data)
     );
 
-    console.log("dataProvider", {sections});
-
     const formFieldValues = transformFormFieldValues(
         table,
         recordValues,
