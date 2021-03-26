@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Servicenow form logic generator for modern portals",
   "main": "lib/index.js",
+  "source":  "module/",
   "types": "index.d.ts",
   "scripts": {
     "build": "npx tsc",

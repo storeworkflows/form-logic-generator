@@ -49,7 +49,7 @@ export default class PlatformResource {
         }
 
         let script = document.createElement('script');
-        script.src = 'https://ven04075.service-now.com/scripts/sn/common/clientScript/js_includes_clientScript.js';
+        script.src = `https://aaronsdev.service-now.com/scripts/sn/common/clientScript/js_includes_clientScript.js`;
         let promise = new Promise((resolve, reject) => {
             script.onload = () => {
                 resolve(PlatformResource.assignPlatformResources(sendRequest));
