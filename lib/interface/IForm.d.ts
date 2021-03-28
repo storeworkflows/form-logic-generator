@@ -96,8 +96,4 @@ export interface IForm {
     gForm: IgForm;
     gUser: IgUser;
     formData: any;
-    fields: IField;
-    sections: Array<ISection>;
-    isNewRecord: boolean;
-    isValidRecord: boolean;
 }
