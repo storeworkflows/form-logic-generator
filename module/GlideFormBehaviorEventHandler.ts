@@ -82,6 +82,7 @@ export default class GlideFormBehaviorEventHandler {
     }
 
     onStateChange (oldState: any, newState: any): void {
+        console.log("GlideFormBehavior", JSON.parse(JSON.stringify(this)));
         const { table, sysId } = this.formData.record;
         this.handleRecordStatusChanged(newState, table, sysId);
     };
