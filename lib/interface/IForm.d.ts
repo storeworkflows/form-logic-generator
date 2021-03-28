@@ -95,7 +95,7 @@ export interface ISection {
 export interface IForm {
     gForm: IgForm;
     gUser: IgUser;
-    gUIActions: IgUIActions;
+    formData: any;
     fields: IField;
     sections: Array<ISection>;
     isNewRecord: boolean;
