@@ -17,6 +17,9 @@ export default class GlideFormBehaviorEventHandler {
         this.formData = formData;
         this.setState = setState;
         this.fetchFormDataActions = fetchFormDataActions;
+        this.onStateChange = this.onStateChange.bind(this);
+        this.updatingState = this.updatingState.bind(this);
+        this.handleRecordStatusChanged = this.handleRecordStatusChanged.bind(this);
     }
 
     private copyObjectAtIndex(array: [], object: {}, index: number) {
