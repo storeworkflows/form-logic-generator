@@ -11,5 +11,7 @@ export default class GlideFormBehaviorEventHandler {
     private operationToStatus;
     updatingState(stateName: string, matchCallBack: any, payload: any): void;
     handleRecordStatusChanged(status: Status, table: string, sysId: string): void;
+    onChange(changedFields: {}): void;
+    onPropChange(type: any, name: string | number, propName: string, value: any): void;
     onStateChange(oldState: any, newState: any): void;
 }

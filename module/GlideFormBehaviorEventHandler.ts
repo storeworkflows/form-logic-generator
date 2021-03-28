@@ -2,6 +2,11 @@ import _ from "lodash";
 import Status from "./enum/Status.enum";
 import IRecordChanged from "./interface/IRecordChanged";
 
+const PROPERTY_CHANGE_FORM = 'FORM';
+const PROPERTY_CHANGE_FIELD = 'FIELD';
+const PROPERTY_CHANGE_SECTION = 'SECTION';
+const PROPERTY_CHANGE_RELATED_LIST = 'RELATED_LIST';
+
 export default class GlideFormBehaviorEventHandler {
     private formData;
     private readonly setState;
@@ -21,6 +26,8 @@ export default class GlideFormBehaviorEventHandler {
         this.onStateChange = this.onStateChange.bind(this);
         this.updatingState = this.updatingState.bind(this);
         this.handleRecordStatusChanged = this.handleRecordStatusChanged.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onPropChange = this.onPropChange.bind(this);
     }
 
     private copyObjectAtIndex(array: [], object: {}, index: number) {
@@ -43,6 +50,7 @@ export default class GlideFormBehaviorEventHandler {
                 return operation;
         }
     }
+
     updatingState(stateName: string, matchCallBack: any, payload: any) {
         const items = this.state[stateName];
         const index = items.findIndex(matchCallBack);
@@ -83,6 +91,48 @@ export default class GlideFormBehaviorEventHandler {
                 ...this.state,
                 isDirty: status === Status.MODIFIED
             });
+    }
+
+    onChange (changedFields: {})  {
+        const gFormFields = this.formData.layout.formFieldValues;
+        const updatedFields: any = Object.keys(changedFields).reduce(
+            (fields: any, fieldName) => {
+                fields[fieldName] = _.cloneDeep(
+                        gFormFields[fieldName]);
+                return updatedFields;
+            },
+            {}
+        );
+        this._updateState({
+            ...this.state,
+            layout: {
+                ...this.state.layout,
+                formFieldValues: {
+                    ...this.state.layout.formFieldValues,
+                    ...updatedFields
+                }
+            }
+        });
+    }
+
+    onPropChange (type: any, name: string | number, propName: string, value: any) {
+        switch (type) {
+            case PROPERTY_CHANGE_FORM:
+                if (propName === 'messages') {
+                    this._updateState({
+                        ...this.state,
+                        layout: {
+                            ...this.state.layout,
+                            formFieldValues: _.cloneDeep(this.state.layout.formFieldValues)
+                        }
+                    });
+                }
+                break;
+            case PROPERTY_CHANGE_FIELD: {
+                this._updateState({..._.cloneDeep(this.state)});
+                break;
+            }
+        }
     }
 
     onStateChange (oldState: any, newState: any): void {
