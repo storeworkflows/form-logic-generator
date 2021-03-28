@@ -10,11 +10,12 @@ export default class GlideFormBehaviorEventHandler {
     private prevRecordStatus: Status;
     private _updateState = (newState: any) => {
         this.state = newState;
-        //this.setState(this.state)
+        this.setState(this.state)
     }
 
     constructor(formData: any, setState: any, fetchFormDataActions: any) {
         this.formData = formData;
+        this.state = formData;
         this.setState = setState;
         this.fetchFormDataActions = fetchFormDataActions;
         this.onStateChange = this.onStateChange.bind(this);
