@@ -614,7 +614,7 @@ const transformFormFieldValues = (
     recordValues: any,
     fieldElements: any,
     fieldStates: any,
-    isFormReadonly: any,
+    isFormReadonly: any = false,
     declarativeUIActions: any,
     variablesLayout: any,
     annotations: any
@@ -758,9 +758,10 @@ const createTransform = (getValueOrDefault: any) => (
     declarativeUIActions = {}
 ) => {
     const {
-        isFormReadonly,
         record: { view }
     } = state;
+
+    const isFormReadonly = false;
     const { table, sysId: orgSysId } = properties;
     const isValidRecord = getValueOrDefault(IS_VALID_RECORD, false)(data);
     const isNewRecord = orgSysId == '-1';
