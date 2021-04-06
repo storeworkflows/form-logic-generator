@@ -42,14 +42,20 @@ export default class PlatformResource {
         };
     }
 
-    private loadPlatformResources(sendRequest: any) {
+    loadPlatformResources() {
+        let sendRequest = sendRequestFactory();
+
         // @ts-ignore
         if (typeof window['glideFormFactory'] !== 'undefined') {
             return Promise.resolve(PlatformResource.assignPlatformResources(sendRequest));
         }
 
         let script = document.createElement('script');
-        script.src = `${location.protocol}//${location.host}/scripts/sn/common/clientScript/js_includes_clientScript.js`;
+        if (location.hostname === "localhost") {
+            script.src = `https://aaronsdev.service-now.com/scripts/sn/common/clientScript/js_includes_clientScript.js`;
+        } else {
+            script.src = `${location.protocol}//${location.host}/scripts/sn/common/clientScript/js_includes_clientScript.js`;
+        }
         let promise = new Promise((resolve, reject) => {
             script.onload = () => {
                 resolve(PlatformResource.assignPlatformResources(sendRequest));
@@ -70,6 +76,7 @@ export default class PlatformResource {
                 glideEnvPromiseResolve = resolve;
                 glideEnvPromiseReject = reject;
             });
+
             let sendRequest = sendRequestFactory();
 
             GlobalStorage.set(id, {
@@ -81,7 +88,7 @@ export default class PlatformResource {
                 glideEnvPromise
             })
 
-            const resources: any = await this.loadPlatformResources(sendRequest);
+            const resources: any = await this.loadPlatformResources();
 
             const currentResources = GlobalStorage.get(id);
 
