@@ -256,7 +256,7 @@ export function glideRecordFactory({ sendRequest }: any) {
                 qc.push(ec);
             }
             this.conditions.forEach((q: any) => {
-                qc.push(q.name + q.oper + q.fieldValue);
+                qc.push(q.name + (q.oper || "=") + q.fieldValue);
             });
 
             return '^' + qc.join('^');
