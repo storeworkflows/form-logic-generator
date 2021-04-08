@@ -1149,5 +1149,5 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
 declare module '@swf/form-logic-generator' {
     import {IForm} from "@swf/form-logic-generator/interface/IForm";
     export function getFormModel(variables: any, id: object, updater: any): Promise<IForm>
-    export function loadPlatformResources(): void;
+    export function loadResources(): void;
 }
