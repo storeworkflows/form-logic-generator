@@ -116,7 +116,7 @@ export default class GlideFormBehaviorEventHandler {
     }
 
     onPropChange (type: any, name: string | number, propName: string, value: any) {
-        console.log("onPropChanged", {type, name, propName, value});
+        console.log("onPropChanged", {type, name, propName, value, state: this.state});
 
         switch (type) {
             case PROPERTY_CHANGE_FORM:
