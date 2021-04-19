@@ -29,7 +29,6 @@ export default class GlideFormBehaviorEventHandler {
     private prevRecordStatus: Status;
     private _updateState = (newState: any) => {
         this.state = newState;
-        console.log({newState, setState: this.setState});
         this.setState(this.state)
     }
 
