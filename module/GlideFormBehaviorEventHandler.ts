@@ -141,6 +141,7 @@ export default class GlideFormBehaviorEventHandler {
                             if (section.caption === name) {
                                 section[propName] = value;
                             }
+                            return section
                         })
                     }
                 })
