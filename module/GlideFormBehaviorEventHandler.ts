@@ -2,10 +2,24 @@ import _ from "lodash";
 import Status from "./enum/Status.enum";
 import IRecordChanged from "./interface/IRecordChanged";
 
-const PROPERTY_CHANGE_FORM = 'FORM';
-const PROPERTY_CHANGE_FIELD = 'FIELD';
-const PROPERTY_CHANGE_SECTION = 'SECTION';
-const PROPERTY_CHANGE_RELATED_LIST = 'RELATED_LIST';
+enum PROPERTY {
+    FORM = 'FORM',
+    FIELD = 'FIELD',
+    SECTION = "SECTION",
+    RELATED_LIST = "RELATED_LIST"
+}
+
+type Section = {
+    [key: string]: any,
+    caption: string
+    captionDisplay: string
+    defaultSection: boolean
+    expanded: boolean
+    id: number
+    label: string
+    rows: any[]
+    sysId: string
+}
 
 export default class GlideFormBehaviorEventHandler {
     private formData;
@@ -38,7 +52,7 @@ export default class GlideFormBehaviorEventHandler {
         ]
     }
 
-    private operationToStatus (operation: string) {
+    private operationToStatus(operation: string) {
         switch (operation) {
             case 'insert':
                 return Status.INSERTED;
@@ -65,7 +79,7 @@ export default class GlideFormBehaviorEventHandler {
         });
     }
 
-    handleRecordStatusChanged  (status: Status, table: string, sysId: string): void {
+    handleRecordStatusChanged(status: Status, table: string, sysId: string): void {
         if ([Status.DELETED, Status.INSERTED, Status.UPDATED].includes(this.prevRecordStatus))
             return;
 
@@ -93,12 +107,12 @@ export default class GlideFormBehaviorEventHandler {
             });
     }
 
-    onChange (changedFields: {})  {
+    onChange(changedFields: {}) {
         const gFormFields = this.formData.layout.formFieldValues;
         const updatedFields: any = Object.keys(changedFields).reduce(
             (fields: any, fieldName) => {
                 fields[fieldName] = _.cloneDeep(
-                        gFormFields[fieldName]);
+                    gFormFields[fieldName]);
                 return updatedFields;
             },
             {}
@@ -115,11 +129,25 @@ export default class GlideFormBehaviorEventHandler {
         });
     }
 
-    onPropChange (type: any, name: string | number, propName: string, value: any) {
+    onPropChange(type: any, name: string | number, propName: string, value: any) {
         console.log("onPropChanged", {type, name, propName, value, state: this.state});
 
         switch (type) {
-            case PROPERTY_CHANGE_FORM:
+            case PROPERTY.SECTION: {
+                this._updateState({
+                    ...this.state,
+                    layout: {
+                        ...this.state.layout,
+                        sections: this.state.layout.sections.map((section: Section) => {
+                            if (section.caption === name) {
+                                section[propName] = value;
+                            }
+                        })
+                    }
+                })
+                break;
+            }
+            case PROPERTY.FORM:
                 if (propName === 'messages') {
                     this._updateState({
                         ...this.state,
@@ -130,16 +158,28 @@ export default class GlideFormBehaviorEventHandler {
                     });
                 }
                 break;
-            case PROPERTY_CHANGE_FIELD: {
-                this._updateState({..._.cloneDeep(this.state)});
+            case PROPERTY.FIELD: {
+                this._updateState({
+                    ...this.state,
+                    layout: {
+                        ...this.state.layout,
+                        fieldStates: {
+                            ...this.state.layout.fieldStates,
+                            [name]: {
+                                ...this.state.layout.fieldStates[name],
+                                [propName]: value
+                            }
+                        }
+                    }
+                })
                 break;
             }
         }
     }
 
-    onStateChange (oldState: any, newState: any): void {
+    onStateChange(oldState: any, newState: any): void {
         console.log("GlideFormBehavior", oldState, newState);
-        const { table, sysId } = this.formData.record;
+        const {table, sysId} = this.formData.record;
         this.handleRecordStatusChanged(newState, table, sysId);
     };
 
