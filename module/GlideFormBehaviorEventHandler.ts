@@ -29,6 +29,7 @@ export default class GlideFormBehaviorEventHandler {
     private prevRecordStatus: Status;
     private _updateState = (newState: any) => {
         this.state = newState;
+        console.log({newState, setState: this.setState});
         this.setState(this.state)
     }
 
@@ -130,8 +131,6 @@ export default class GlideFormBehaviorEventHandler {
     }
 
     onPropChange(type: any, name: string | number, propName: string, value: any) {
-        console.log("onPropChanged", {type, name, propName, value, state: this.state});
-
         switch (type) {
             case PROPERTY.SECTION: {
                 this._updateState({
