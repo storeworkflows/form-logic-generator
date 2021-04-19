@@ -1143,7 +1143,6 @@ declare module '@swf/form-logic-generator/utils/uiPolicyParser' {
   function parseGraphQLPolicy(policy: any): any;
   function parseGraphQLResponse(uiPolicies: any): any;
   export default uiPolicyParser;
-
 }
 
 declare module '@swf/form-logic-generator' {
