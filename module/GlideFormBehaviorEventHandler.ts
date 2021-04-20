@@ -163,9 +163,9 @@ export default class GlideFormBehaviorEventHandler {
                     layout: {
                         ...this.state.layout,
                         fieldStates: {
-                            ...this.state.layout.fieldStates,
+                            ...this.state.layout.formFieldValues,
                             [name]: {
-                                ...this.state.layout.fieldStates[name],
+                                ...this.state.layout.formFieldValues[name],
                                 [propName]: value
                             }
                         }
