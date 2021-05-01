@@ -1,10 +1,10 @@
 import {encodeURIParameters} from "./utils/http";
 import _ from "lodash";
 
-class GlideRequest {
-    private sendRequest: any;
+type sendRequest = (url: string, method: string, options: any) => Promise<any>;
 
-    private static applyOptions(method: string, url: string, options: any) {
+function GlideRequest(sendRequest: sendRequest) {
+    function applyOptions(method: string, url: string, options: any) {
         let fetchOptions = {
             ...options,
             method: method,
@@ -51,16 +51,15 @@ class GlideRequest {
         return fetchOptions;
     }
 
-    private requestFactory(method: string, url: string, options: any) {
+    function requestFactory(method: string, url: string, options: any) {
         if (!url) {
             throw 'Must specify a URL';
         }
-        const fetchOptions = GlideRequest.applyOptions(method, url, options);
-        return this.sendRequest(fetchOptions.url, method, fetchOptions);
+        const fetchOptions = applyOptions(method, url, options);
+        return sendRequest(fetchOptions.url, method, fetchOptions);
     }
 
-
-    private static getAngularURL(path: string, parameters: any) {
+    function getAngularURL(path: string, parameters: any) {
         return (
             '/angular.do?sysparm_type=' +
             path +
@@ -69,17 +68,16 @@ class GlideRequest {
         );
     }
 
-
-    private get(url: string, options: any) {
-        return this.requestFactory(url, 'get', options)
+    function get(url: string, options: any) {
+        return requestFactory(url, 'get', options)
     }
 
-    private post(url: string, options: any) {
+    function post(url: string, options: any) {
         if (!url) {
             throw 'Must specify a URL';
         }
-        const fetchOptions = GlideRequest.applyOptions('post', url, options);
-        return this.sendRequest(fetchOptions.url, 'post', fetchOptions).then(
+        const fetchOptions = applyOptions('post', url, options);
+        return sendRequest(fetchOptions.url, 'post', fetchOptions).then(
             (response: any) => {
                 /* for glideAjax */
                 let type = fetchOptions.dataType;
@@ -97,25 +95,21 @@ class GlideRequest {
         );
     }
 
-    private put(url: string, options: any) {
-        return this.requestFactory(url, "put", options);
+    function put(url: string, options: any) {
+        return requestFactory(url, "put", options);
     }
 
-    private patch(url: string, options: any) {
-        return this.requestFactory(url, "patch", options);
+    function patch(url: string, options: any) {
+        return requestFactory(url, "patch", options);
     }
 
-    getFactory({sendRequest}: any) {
-        this.sendRequest = sendRequest;
-
-        return {
-            getAngularURL: GlideRequest.getAngularURL,
-            get: this.get,
-            post: this.post,
-            put: this.put,
-            patch: this.patch
-        }
-    };
+    return {
+        getAngularURL: getAngularURL,
+        get: get,
+        post: post,
+        put: put,
+        patch: patch
+    }
 }
 
-export default new GlideRequest()
+export default GlideRequest

@@ -23,7 +23,7 @@ export default class PlatformResource {
 
         const uiScriptFactory = window['uiScriptFactory'];
 
-        const glideRequest = GlideRequest.getFactory({sendRequest});
+        const glideRequest = GlideRequest(sendRequest);
         // inject new request layer
         glideFormFactory.glideRequest = glideRequest;
         glideAjax.glideRequest = glideRequest;
