@@ -74,7 +74,8 @@ export const componentDataSources: any = {
         currentUser,
         uiAction,
         dataLookup,
-        fieldValidator
+        fieldValidator,
+        sessionMessage
     ],
     'now-activity-combo': [activityStream],
     'now-activity-stream-connected': [activityStream],
