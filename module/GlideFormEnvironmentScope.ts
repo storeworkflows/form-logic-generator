@@ -144,6 +144,16 @@ export class GlideFormEnvironmentScope extends GlideVariableScope {
                     type = 'warning';
                     break;
             }
+
+            const messageEvent = new CustomEvent("snc_ui_message", {
+                detail: {
+                    type,
+                    message
+                }
+            });
+
+            document.documentElement.dispatchEvent(messageEvent);
+
             return true;
         };
 
