@@ -204,6 +204,7 @@ export class GlideFormEnvironment {
             }
         };
         const liveUpdatedSubscriber = (liveUpdatedFields: any) => {
+            console.log("Live update", {liveUpdatedFields});
             if (this._liveUpdatedSubscriber) {
                 this._liveUpdatedSubscriber.call(
                     this._liveUpdatedSubscriber,

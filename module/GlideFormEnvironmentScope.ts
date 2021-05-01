@@ -197,13 +197,13 @@ export class GlideFormEnvironmentScope extends GlideVariableScope {
         if (stateSubscriber) {
             g_form.$private.events.on(EVENT_STATE_CHANGE, stateSubscriber);
         }
-        //if (liveUpdatedSubscriber) {
+        if (liveUpdatedSubscriber) {
+            console.log({liveUpdatedSubscriber})
             g_form.$private.events.on(
                 EVENT_LIVE_UPDATED,
-                function () { console.log("LiveUpdate", {...arguments}) }
-                //liveUpdatedSubscriber
+                liveUpdatedSubscriber
             );
-        //}
+        }
         this.set(G_FORM, g_form);
     }
 
