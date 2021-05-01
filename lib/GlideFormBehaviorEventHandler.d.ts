@@ -13,5 +13,6 @@ export default class GlideFormBehaviorEventHandler {
     handleRecordStatusChanged(status: Status, table: string, sysId: string): void;
     onChange(changedFields: {}): void;
     onPropChange(type: any, name: string | number, propName: string, value: any): void;
+    onLiveUpdated(): void;
     onStateChange(oldState: any, newState: any): void;
 }
