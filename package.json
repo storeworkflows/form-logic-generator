@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Servicenow form logic generator for modern portals",
   "main": "lib/index.js",
-  "source":  "module/",
+  "source": "module/",
   "types": "index.d.ts",
   "scripts": {
     "build": "npx tsc",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@servicenow/library-translate": "^19.1.0",
+    "amb-client-js": "^19.0.0",
     "common-js": "^0.3.8",
     "lodash": "^4.17.21",
     "sn-http-request": "^18.0.1"

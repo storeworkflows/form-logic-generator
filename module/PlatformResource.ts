@@ -92,7 +92,7 @@ export default class PlatformResource {
 
             const currentResources = GlobalStorage.get(id);
 
-            if (!currentResources) throw new Error("Error when setted default values");
+            if (!currentResources) throw new Error("Error when set default values");
 
             currentResources.glideEnvironment = new GlideFormEnvironment(
                 resources
