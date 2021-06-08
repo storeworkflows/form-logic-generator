@@ -178,11 +178,9 @@ export default class GlideFormBehaviorEventHandler {
 
     onLiveUpdated() {
         // @ts-ignore
-        console.log("LIVE UPDATE", ...arguments)
     }
 
     onStateChange(oldState: any, newState: any): void {
-        console.log("GlideFormBehavior", oldState, newState);
         const {table, sysId} = this.formData.record;
         this.handleRecordStatusChanged(newState, table, sysId);
     };
