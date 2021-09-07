@@ -1,5 +1,5 @@
 {
-  "name": "@swf/form-logic-generator",
+  "name": "@storeworkflows/form-logic-generator",
   "version": "1.0.0",
   "description": "Servicenow form logic generator for modern portals",
   "main": "lib/index.js",
